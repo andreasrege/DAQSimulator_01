@@ -20,9 +20,17 @@ namespace DAQSimulator_01
     /// </summary>
     public partial class MainWindow : Window
     {
+        Sensor tSensor;
         public MainWindow()
         {
             InitializeComponent();
+            tSensor = new Sensor("TestSens01", "AI", "Temp", "Room1");
+            //tSensor.GetValue();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            txtNextReadTime.Text = tSensor.GetValue().ToString();
         }
     }
 }
