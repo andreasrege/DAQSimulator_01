@@ -13,7 +13,9 @@
         <TextBox x:Name="txtNextLogTime" HorizontalAlignment="Left" Height="23" Margin="174,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox HorizontalAlignment="Left" Height="211" Margin="327,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="136"/>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="23,24,0,0" VerticalAlignment="Top" Width="288"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="23,114,0,0" VerticalAlignment="Top" Width="288"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="23,114,0,0" VerticalAlignment="Top" Width="288">
+            <Label Content="Logging section"/>
+        </Border>
 
     </Grid>
 </Window>
