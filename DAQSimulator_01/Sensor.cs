@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace DAQSimulator_01
 {
+   
     class Sensor
     {
         protected string name;
@@ -14,7 +15,14 @@ namespace DAQSimulator_01
         protected int sValue;
         protected string txtPos;
         protected int sensorId;
+        //protected int sensorId;
         Random rnd;
+
+        public Sensor()
+        {
+            rnd = new Random();
+            sensorId++;
+        }
 
         public Sensor(string _name, string _type, string _measurand, string _txtPos)
         {
@@ -22,10 +30,10 @@ namespace DAQSimulator_01
             type = _type;
             measurand = _measurand;
             txtPos = _txtPos;
-            sValue = 0;
+            //sValue = 0;
             //countSensor++;
-            sensorId = 0;
-            rnd = new Random(sensorId);
+            sensorId++;
+            //Random rnd = new Random();
         }
 
         public int GetValue()

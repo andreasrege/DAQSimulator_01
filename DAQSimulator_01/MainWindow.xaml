@@ -9,13 +9,17 @@
     <Grid>
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="23,24,0,0" VerticalAlignment="Top" Width="288"/>
         <Button x:Name="btnReadSensorVal" Content="Read sensor value" HorizontalAlignment="Left" Margin="49,67,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
-        <Button x:Name="btnLogToFile" Content="Log to file" HorizontalAlignment="Left" Margin="49,160,0,0" VerticalAlignment="Top" Width="110"/>
+        <Button x:Name="btnLogToFile" Content="Log to file" HorizontalAlignment="Left" Margin="49,160,0,0" VerticalAlignment="Top" Width="110" Click="btnLogToFile_Click"/>
         <TextBox x:Name="txtNextReadTime" HorizontalAlignment="Left" Height="23" Margin="174,41,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="txtNextLogTime" HorizontalAlignment="Left" Height="23" Margin="174,125,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox HorizontalAlignment="Left" Height="211" Margin="327,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="136"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="23,114,0,0" VerticalAlignment="Top" Width="288">
-            <Label Content="Logging section"/>
-        </Border>
+        <TextBox x:Name="txtList" HorizontalAlignment="Left" Height="211" Margin="327,24,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="136"/>
+        <ListView x:Name="lstView1" HorizontalAlignment="Left" Height="100" Margin="49,206,0,0" VerticalAlignment="Top" Width="100">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>
