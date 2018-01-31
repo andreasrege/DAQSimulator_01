@@ -15,25 +15,24 @@ namespace DAQSimulator_01
         protected int sValue;
         protected string txtPos;
         protected int sensorId;
-        //protected int sensorId;
-        Random rnd;
+        protected Random rnd;
 
         public Sensor()
         {
             rnd = new Random();
-            sensorId++;
+            //sensorId++;
         }
 
-        public Sensor(string _name, string _type, string _measurand, string _txtPos)
+        public Sensor(int _sensorId, string _name, string _type, string _measurand, string _txtPos)
         {
-            name = _name;
-            type = _type;
-            measurand = _measurand;
-            txtPos = _txtPos;
+           // name = _name;
+            //type = _type;
+            //measurand = _measurand;
+            //txtPos = _txtPos;
             //sValue = 0;
             //countSensor++;
-            sensorId++;
-            //Random rnd = new Random();
+            //sensorId=_sensorId;
+           // rnd = new Random(sensorId);
         }
 
         public int GetValue()
