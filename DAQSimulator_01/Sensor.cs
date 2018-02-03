@@ -12,38 +12,41 @@ namespace DAQSimulator_01
         protected string name;
         protected string type;
         protected string measurand;
-        protected int sValue;
+        protected double sValue;
         protected string txtPos;
         protected int sensorId;
         protected Random rnd;
+        protected double minVolt;
+        protected double maxVolt;
+
 
         public Sensor()
         {
-            rnd = new Random();
+            //rnd = new Random();
             //sensorId++;
         }
 
         public Sensor(int _sensorId, string _name, string _type, string _measurand, string _txtPos)
         {
-           // name = _name;
+            // name = _name;
             //type = _type;
             //measurand = _measurand;
             //txtPos = _txtPos;
             //sValue = 0;
             //countSensor++;
             //sensorId=_sensorId;
-           // rnd = new Random(sensorId);
+            // rnd = new Random(sensorId);
         }
 
-        public int GetValue()
+        public double GetValue()
         {
             sValue = SimSensor();
-            return sValue;
+            return sValue/100.00;
         }
 
         private int SimSensor()
         {
-           return rnd.Next(0,100);
+           return rnd.Next(-100,100);
         }
         
     }

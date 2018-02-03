@@ -21,26 +21,33 @@ namespace DAQSimulator_01
     public partial class MainWindow : Window
     {
         AnalogSensor[] arrSensor;
-        int[] arrListValues;
+        double[] arrListValues;
         int aSensorCount = 10;
-        //Sensor tSensor;
+        double sampleTime = 5500; //milliseconds
+        double logTime = 58; //seconds
+        DateTime dtSampStart;
+        DateTime dtLogStart;
+        double elapsedTimeSampling;
+        double elapsedTimeLog;
         public MainWindow()
         {
             InitializeComponent();
-            /*
-            testClass2 tC2 = new testClass2();
-            tC2.name = "testClass2_Name";
-            tC2.intClass2 = 2;
 
-           // tSensor = new Sensor("TestSens01", "AI", "Temp", "Room1");
-           // Console.WriteLine("Please specify number of analog sensors do create");*/
+            
+            /*if (elapsedTimeSampling >= sampleTime)
+            {
+                btnReadSensVal
+            }
+            else
+            { btnReadSensVal.IsEnabled = false; }
+            */
             int aSensorCount = 10;
-            arrListValues = new int[aSensorCount];
+            arrListValues = new double[aSensorCount];
             arrSensor = new AnalogSensor[aSensorCount];
             
             for (int i=0; i< aSensorCount; i++)
             {
-               arrSensor[i] = new AnalogSensor(i, "","","","");
+                arrSensor[i] = new AnalogSensor(i, "","","","",-1,1);
                //arrListValues[i] = arrSensor[i].GetValue();
                //lstView1.Items.Add(arrListValues[i].ToString());
                
@@ -50,24 +57,52 @@ namespace DAQSimulator_01
             //tSensor.GetValue();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            txtNextLogTime.Text = arrListValues[1].ToString();
-            //lstView1.Items.Add(txtNextLogTime);
-            //txtList.Text=//
-            //txtNextReadTime.Text = tSensor.GetValue().ToString();
-           // txtList.Text = arrListValues.ToString() ;
-        }
+
 
         private void btnLogToFile_Click(object sender, RoutedEventArgs e)
         {
-            lstView1.Items.Clear();
-            for (int j = 0; j < aSensorCount; j++)
+            lstViewLogVals.Items.Clear();
+            elapsedTimeLog = Convert.ToDouble(Math.Truncate(DateTime.Now.Subtract(dtLogStart).TotalSeconds));
+            if (elapsedTimeLog >= logTime)
             {
-                arrListValues[j] = arrSensor[j].GetValue();
-                lstView1.Items.Add("Sensor "+(1+j)+" value: "+arrListValues[j].ToString());
+                txtNextLogTime.Clear();
+                dtLogStart = DateTime.Now;
+                for (int j = 0; j < aSensorCount; j++)
+                {
+                    arrListValues[j] = arrSensor[j].GetValue();
+                    lstViewLogVals.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString());
+                }
             }
+            else
+            {
+                txtNextLogTime.Text = "Required elapsed time between logging not acheived!";
+                txtNextLogTime.Text = (logTime - elapsedTimeLog).ToString();
+            }
+        }
 
+        
+
+        private void btnReadSensVal_Click(object sender, RoutedEventArgs e)
+        {
+            lstView1.Items.Clear();
+            elapsedTimeSampling = Convert.ToDouble(Math.Truncate(DateTime.Now.Subtract(dtSampStart).TotalMilliseconds));
+            if (elapsedTimeSampling >= sampleTime)
+            {
+                txtNextLogTime.Clear();
+                txtNextReadTime.Clear();
+                // last = now;
+                dtSampStart = DateTime.Now;
+                for (int j = 0; j < aSensorCount; j++)
+                {
+                    arrListValues[j] = arrSensor[j].GetValue();
+                    lstView1.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString());
+                }
+            }
+            else
+            {
+                txtNextLogTime.Text = "Requireds sampling time not acheived!";
+                txtNextReadTime.Text = ((sampleTime - elapsedTimeSampling) / 1000.0).ToString();
+            }
         }
     }
 }
