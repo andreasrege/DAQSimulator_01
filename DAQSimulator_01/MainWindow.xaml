@@ -5,26 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DAQSimulator_01"
         mc:Ignorable="d"
-        Title="MainWindow" Height="613.6" Width="713.8">
+        Title="MainWindow" Height="824.4" Width="713.8">
     <Grid Margin="-193,0,-119.6,-254.2" RenderTransformOrigin="0.511,0.634">
         <Grid.RowDefinitions>
-            <RowDefinition Height="217*"/>
-            <RowDefinition Height="621*"/>
+            <RowDefinition Height="184*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="376*"/>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="223,20,0,0" VerticalAlignment="Top" Width="288"/>
-        <Button x:Name="btnLogToFile" Content="Log to file" HorizontalAlignment="Left" Margin="242,191,0,0" VerticalAlignment="Top" Width="110" Click="btnLogToFile_Click"/>
-        <TextBox x:Name="txtNextReadTime" HorizontalAlignment="Left" Height="23" Margin="383,27,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtNextLogTime" HorizontalAlignment="Left" Height="87" Margin="383,165,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="128" Grid.RowSpan="2"/>
-        <TextBox x:Name="txtList" HorizontalAlignment="Left" Height="211" Margin="242,81.2,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="136" Grid.Row="1"/>
-        <ListView x:Name="lstView1" HorizontalAlignment="Left" Height="542" Margin="550,20,0,0" VerticalAlignment="Top" Width="140" Grid.RowSpan="2">
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="223,118,0,0" VerticalAlignment="Top" Width="288" Grid.RowSpan="2"/>
+
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="77" Margin="223,41,0,0" VerticalAlignment="Top" Width="288"/>
+        <TextBox x:Name="txtNextReadTime" HorizontalAlignment="Left" Height="21" Margin="383,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtNextLogTime" HorizontalAlignment="Left" Height="24" Margin="383,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtList" HorizontalAlignment="Left" Height="63" Margin="223,27.8,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="288" Grid.Row="2"/>
+        <ListView x:Name="lstView1" HorizontalAlignment="Left" Height="249" Margin="550,41,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3" Grid.Column="4" Grid.ColumnSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="btnReadSensVal" Content="Read Sensor Values" HorizontalAlignment="Left" Height="38" Margin="242,41,0,0" VerticalAlignment="Top" Width="110" Click="btnReadSensVal_Click"/>
-        <ListView x:Name="lstViewLogVals" HorizontalAlignment="Left" Height="542" Margin="711,20,0,0" VerticalAlignment="Top" Width="140" Grid.RowSpan="2">
+        <Button x:Name="btnReadSensVal" Content="Read Sensor Values" HorizontalAlignment="Left" Height="24" Margin="242,66,0,0" VerticalAlignment="Top" Width="110" Click="btnReadSensVal_Click"/>
+        <ListView x:Name="lstViewLogVals" HorizontalAlignment="Left" Height="249" Margin="711,41,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -32,6 +35,40 @@
             </ListView.View>
         </ListView>
         <Label x:Name="lblSampledVals" Content="Sampled values:" HorizontalAlignment="Left" Height="11" Margin="550,4,0,0" VerticalAlignment="Top" Width="53"/>
+        <Label Content="Last read values:" HorizontalAlignment="Left" Margin="548,17,0,0" VerticalAlignment="Top" Height="26" Width="96"/>
+        <Label Content="Last logged values:" HorizontalAlignment="Left" Margin="709,17,0,0" VerticalAlignment="Top" Height="26" Width="110"/>
+        <Label Content="Time before sampling:" HorizontalAlignment="Left" Margin="381,46,0,0" VerticalAlignment="Top" Height="32" Width="126"/>
+        <Label Content="Message to user:" HorizontalAlignment="Left" Margin="220,6.8,0,0" VerticalAlignment="Top" Height="32" Width="126" Grid.Row="2"/>
+        <Label Content="Time before logging:" HorizontalAlignment="Left" Margin="381,119,0,0" VerticalAlignment="Top" Height="32" Width="126"/>
+        <Button x:Name="btnLogToFile" Content="Log to file" HorizontalAlignment="Left" Margin="242,141,0,0" VerticalAlignment="Top" Width="110" Click="btnLogToFile_Click" Height="24"/>
+        <Menu x:Name="mnuFile" HorizontalAlignment="Left" Height="23" Margin="190,0,0,0" VerticalAlignment="Top" Width="32">
+            <MenuItem x:Name="mnuFile1" Header="File" Height="20" Width="32">
+                <MenuItem x:Name="mnuFileExit" Header="Exit" HorizontalAlignment="Left" Height="20" Width="116" Margin="0,0,-16,0" Click="mnuFileExit_Click"/>
+            </MenuItem>
+        </Menu>
+        <Menu x:Name="mnuHelp1" HorizontalAlignment="Left" Height="23" Margin="222,0,0,0" VerticalAlignment="Top" Width="38">
+            <MenuItem x:Name="mnuHelp" Header="Help" Height="20" Width="38">
+                <MenuItem x:Name="mnuHelpLogging" Header="About Logging" HorizontalAlignment="Left" Height="32" Width="213" Margin="0,0,-73.8,0" Click="mnuHelpLogging_Click"/>
+                <MenuItem x:Name="mnuHelpSampling" Header="About Sampling" HorizontalAlignment="Left" Height="32" Width="223" Margin="0,0,-83.8,0" Click="mnuHelpSampling_Click"/>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="txtTestTextBox" HorizontalAlignment="Left" Height="23" Margin="223,121.2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <ListView x:Name="lstViewDigSensVals" HorizontalAlignment="Left" Height="249" Margin="550,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView x:Name="lstViewDigLogVals" HorizontalAlignment="Left" Height="249" Margin="711,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Label x:Name="lblDigSample" Content="Last read digital values:" HorizontalAlignment="Left" Margin="548,302,0,0" VerticalAlignment="Top" Height="26" Width="147"/>
+        <Label x:Name="lblLoggedDigVals" Content="Last logged digital values:" HorizontalAlignment="Left" Margin="709,302,0,0" VerticalAlignment="Top" Height="26" Width="147"/>
 
     </Grid>
 </Window>

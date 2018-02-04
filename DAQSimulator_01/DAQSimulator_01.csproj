@@ -55,9 +55,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AnalogSensor.cs" />
+    <Compile Include="DigitalSensor.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Scale.cs" />
     <Compile Include="Sensor.cs" />
-    <Compile Include="testClass1.cs" />
-    <Compile Include="testClass2.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
