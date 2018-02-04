@@ -26,11 +26,12 @@ namespace DAQSimulator_01
         Log logFile;
         Scale scaleSensor2;
         Filter filter;
+        double[] filteredVal = new double[7];
         double[] arrListValues;
         int[] arrListDigValues;
         int aSensorCount = 7;
         int dSensorCount = 3;
-        double sampleTime = 5500; //milliseconds
+        double sampleTime = 550; //milliseconds
         double logTime = 5; //seconds
         DateTime dtSampStart;
         DateTime dtLogStart;
@@ -117,6 +118,7 @@ namespace DAQSimulator_01
         {
             lstView1.Items.Clear();
             lstViewDigSensVals.Items.Clear();
+            lstViewFilteredVals.Items.Clear();
             txtList.Clear();
             elapsedTimeSampling = Convert.ToDouble(Math.Truncate(DateTime.Now.Subtract(dtSampStart).TotalMilliseconds));
             if (elapsedTimeSampling >= sampleTime)
@@ -129,7 +131,8 @@ namespace DAQSimulator_01
                 {
                     arrListValues[j] = arrAnalogSensor[j].GetValue(minRange * 100, maxRange * 100) / 100.00;
                     lstView1.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]");
-                    filter.AddToMAFList(arrListValues[j]);
+                    filteredVal = filter.FilterValues(arrListValues[j]);
+                    lstViewFilteredVals.Items.Add("Sensor " + (1 + j) + " filtered value: " + filteredVal[j]);
                 }
                 
                 //Getting digital sensor values

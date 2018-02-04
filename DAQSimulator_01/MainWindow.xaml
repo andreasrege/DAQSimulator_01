@@ -53,14 +53,14 @@
             </MenuItem>
         </Menu>
         <TextBox x:Name="txtTestTextBox" HorizontalAlignment="Left" Height="23" Margin="223,121.2,0,0" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-        <ListView x:Name="lstViewDigSensVals" HorizontalAlignment="Left" Height="249" Margin="550,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
+        <ListView x:Name="lstViewDigSensVals" HorizontalAlignment="Left" Height="128" Margin="550,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView x:Name="lstViewDigLogVals" HorizontalAlignment="Left" Height="249" Margin="711,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
+        <ListView x:Name="lstViewDigLogVals" HorizontalAlignment="Left" Height="128" Margin="711,326,0,0" VerticalAlignment="Top" Width="145" Grid.RowSpan="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -69,6 +69,13 @@
         </ListView>
         <Label x:Name="lblDigSample" Content="Last read digital values:" HorizontalAlignment="Left" Margin="548,302,0,0" VerticalAlignment="Top" Height="26" Width="147"/>
         <Label x:Name="lblLoggedDigVals" Content="Last logged digital values:" HorizontalAlignment="Left" Margin="709,302,0,0" VerticalAlignment="Top" Height="26" Width="147"/>
+        <ListView x:Name="lstViewFilteredVals" HorizontalAlignment="Left" Height="249" Margin="383,120.8,0,0" VerticalAlignment="Top" Width="220" Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
 
     </Grid>
 </Window>

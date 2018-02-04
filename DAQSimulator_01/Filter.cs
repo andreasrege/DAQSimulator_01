@@ -10,25 +10,23 @@ namespace DAQSimulator_01
     {
         List<double[]> MA_FilterList = new List<double[]>();
         double values;
-        double[] filteredValue = new double[5];
+        double[] filteredValue = new double[7];
         int filterSize = 5;
+        int numSensors = 7;
         double[,] sampledValues = new double[5, 7];
-        double[] totalVal = new double[5];
+        double[] totalVal = new double[7];
         int index1 = 0;
         int index2 = 0;
 
         bool enableFiltering=false;
 
 
-        public void AddToMAFList(double _values)
+       /* public double[] AddToMAFList(double _values)
         {
             values = _values;
-            //MA_FilterList.Add(values);
-            //FilterValues(MA_FilterList);
             FilterValues(values);
-
-
-        }
+            return 
+        }*/
 
         public double[] FilterValues(double _RawValues)
         {
@@ -52,9 +50,14 @@ namespace DAQSimulator_01
             }
             if (enableFiltering)
             {
-                for (int f=0; f<filterSize;f++)
+                /*
+                foreach (int element in filteredValue)
                 {
-                    for (int g=0; g<filterSize; g++)
+                    filteredValue[element] = 0;
+                }*/
+                for (int f=0; f<numSensors;f++)
+                {
+                    for (int g=0; g <= filterSize-1; g++)
                     {
                         totalVal[f] += sampledValues[g, f];
                     }
