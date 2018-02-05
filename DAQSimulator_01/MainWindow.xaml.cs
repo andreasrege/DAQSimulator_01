@@ -37,10 +37,14 @@ namespace DAQSimulator_01
         DateTime dtLogStart;
         double elapsedTimeSampling;
         double elapsedTimeLog;
-        int minRange=-1;
-        int maxRange=1;
+        int aMinRange=-1;
+        int aMaxRange=1;
+        int dMinRange = 0;
+        int dMaxRange = 2;
+        int aRes = Convert.ToInt32(Math.Pow(2,22));
+        int dRes = Convert.ToInt32(Math.Pow(2,1));
 
-        string path = @"C:\Users\andreas\Documents\_Skole\Visual Studio code\LogFiles\log222.txt";
+        string path = @"C:\Users\andreas\Documents\_Skole\Visual Studio code\LogFiles\log333.csv";
         bool fileExist;
         public MainWindow()
         {
@@ -51,7 +55,7 @@ namespace DAQSimulator_01
             logFile = new Log(path);
             fileExist = logFile.checkFileExist();
 
-            scaleSensor2 = new Scale(minRange,maxRange,-100,+100);
+            scaleSensor2 = new Scale(aMinRange, aMaxRange,-100,+100);
 
             txtList.Text = fileExist.ToString();
 
@@ -66,13 +70,13 @@ namespace DAQSimulator_01
             //Creating analog sensors
             for (int i=0; i< aSensorCount; i++)
             {
-                arrAnalogSensor[i] = new AnalogSensor(i, "","","","", minRange, maxRange);            
+                arrAnalogSensor[i] = new AnalogSensor(i, "","","","", aMinRange, aMaxRange, aRes);            
             }
 
             //Creating digital sensors
             for (int d = 0; d < dSensorCount; d++)
             {
-                arrDigSensor[d] = new DigitalSensor(d,"","","");
+                arrDigSensor[d] = new DigitalSensor(d,"","","","",dMinRange,dMaxRange,dRes);
             }
         }
 
@@ -89,20 +93,24 @@ namespace DAQSimulator_01
                 txtNextLogTime.Clear();
                 dtLogStart = DateTime.Now;
                 //Getting and storing analog sensor values
+                logFile.appendToFile(DateTime.Now.ToString(),_startOfLine:true);
                 for (int j = 0; j < aSensorCount; j++)
                 {
-                    arrListValues[j] = arrAnalogSensor[j].GetValue(minRange*100, maxRange*100)/100.00;
-                    lstViewLogVals.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]"); 
-                    logFile.appendToFile(DateTime.Now.ToString() + ", Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]");
-                    
+                    arrListValues[j] = arrAnalogSensor[j].GetValue();
+                    lstViewLogVals.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]");
+                    //logFile.appendToFile(DateTime.Now.ToString() + ", Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]");
+                    logFile.appendToFile(filteredVal[j].ToString());
                 }
+                
                 //Getting and storing digital sensor values
                 for (int k=0; k < dSensorCount; k++)
                 {
-                    arrListDigValues[k] = arrDigSensor[k].GetValue(minRange + 1, maxRange + 1);
+                    arrListDigValues[k] = Convert.ToInt32(arrDigSensor[k].GetValue());
                     lstViewDigLogVals.Items.Add("Dig. Sensor " + (k + 1) + " value: " +arrListDigValues[k]);
-                    logFile.appendToFile(DateTime.Now.ToString() + ", Dig.Sensor " + (k + 1) + " value: " + arrListDigValues[k].ToString());
+                    //logFile.appendToFile(DateTime.Now.ToString() + ", Dig.Sensor " + (k + 1) + " value: " + arrListDigValues[k].ToString());
+                    logFile.appendToFile(arrListDigValues[k].ToString());
                 }
+                logFile.appendToFile("", _endOfLine: true);
             }
             else
             {
@@ -129,7 +137,8 @@ namespace DAQSimulator_01
                 //Getting analog sensor values
                 for (int j = 0; j < aSensorCount; j++)
                 {
-                    arrListValues[j] = arrAnalogSensor[j].GetValue(minRange * 100, maxRange * 100) / 100.00;
+                    
+                    arrListValues[j] = arrAnalogSensor[j].GetValue();
                     lstView1.Items.Add("Sensor " + (1 + j) + " value: " + arrListValues[j].ToString() + " [V]");
                     filteredVal = filter.FilterValues(arrListValues[j]);
                     lstViewFilteredVals.Items.Add("Sensor " + (1 + j) + " filtered value: " + filteredVal[j]);
@@ -138,7 +147,7 @@ namespace DAQSimulator_01
                 //Getting digital sensor values
                 for (int k = 0; k < dSensorCount; k++)
                 {
-                    lstViewDigSensVals.Items.Add("Dig. Sensor " + (k + 1) + " value: " + arrDigSensor[k].GetValue(minRange + 1, maxRange + 1));
+                    lstViewDigSensVals.Items.Add("Dig. Sensor " + (k + 1) + " value: " + arrDigSensor[k].GetValue());
                 }
             }
             else

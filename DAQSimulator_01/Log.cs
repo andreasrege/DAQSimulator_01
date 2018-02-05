@@ -30,11 +30,21 @@ namespace DAQSimulator_01
             return fileExist;
         }
 
-        public void appendToFile(string _text)
+        public void appendToFile(string _text,bool _startOfLine=false, bool _endOfLine=false)
         {
             using (StreamWriter sw = File.AppendText(path))
             {
-                sw.WriteLine(_text);
+                //sw.WriteLine(_text);
+                if (!_startOfLine)
+                {
+                    sw.Write(',');
+                }
+                sw.Write(_text);
+                if (_endOfLine)
+                {
+                    sw.WriteLine();
+                }
+
             }
         }
         

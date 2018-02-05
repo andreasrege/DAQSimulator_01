@@ -9,7 +9,7 @@ namespace DAQSimulator_01
     class Scale
     {
         private double minRaw, maxRaw, minScaled, maxScaled;
-        double scaledValue;
+        public double scaledValue;
 
         public Scale(double _minRaw, double _maxRaw, double _minScaled, double _maxScaled)
         {

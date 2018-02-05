@@ -8,7 +8,7 @@ namespace DAQSimulator_01
 {
     class Filter
     {
-        List<double[]> MA_FilterList = new List<double[]>();
+        List<double> MA_FilterList = new List<double>(5);
         double values;
         double[] filteredValue = new double[7];
         int filterSize = 5;
@@ -31,6 +31,7 @@ namespace DAQSimulator_01
         public double[] FilterValues(double _RawValues)
         {
             sampledValues[index1, index2] = _RawValues;
+            //MA_FilterList.Add(_RawValues);
             /*
             for (int m=0; m<sampledValues.Length;m++)
             {
@@ -55,6 +56,9 @@ namespace DAQSimulator_01
                 {
                     filteredValue[element] = 0;
                 }*/
+                int h = 0;
+                Array.Clear(totalVal,h ,7);
+                //Array.Clear(totalVal, index2, 5);
                 for (int f=0; f<numSensors;f++)
                 {
                     for (int g=0; g <= filterSize-1; g++)
