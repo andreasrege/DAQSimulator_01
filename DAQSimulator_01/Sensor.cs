@@ -32,6 +32,7 @@ namespace DAQSimulator_01
             measurand = _measurand; //Assigns measureand
             txtPos = _txtPos; // Assigns txtPos
             sensorId = _sensorId; //Assigngs sensorId
+            res = _res;
             rnd = new Random(sensorId); //Instanciate a new random
         }
 

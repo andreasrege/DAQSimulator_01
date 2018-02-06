@@ -62,18 +62,24 @@ namespace DAQSimulator_01
 
             arrDigSensor = new DigitalSensor[dSensorCount];
 
+            logFile.appendToFile("TimeStamp", _startOfLine: true);
             //Creating analog sensors
             for (int i=0; i< aSensorCount; i++)
             {
                 arrAnalogSensor[i] = new AnalogSensor(i, "V","", aMinRange, aMaxRange, aRes);
                 filter[i] = new Filter(5);
+                //logFile.appendToFile(arrAnalogSensor[i].Name);
+                logFile.appendToFile("ai_"+i);
             }
 
             //Creating digital sensors
             for (int d = 0; d < dSensorCount; d++)
             {
                 arrDigSensor[d] = new DigitalSensor(d, "");
+                logFile.appendToFile("di_" + d);
             }
+
+            logFile.appendToFile("", _endOfLine: true);
         }
 
 
@@ -108,7 +114,6 @@ namespace DAQSimulator_01
             {
                 txtList.Text = "Required elapsed time between logging not acheived!";
                 txtNextLogTime.Text = (logTime - elapsedTimeLog).ToString();
-                
             }
         }
 
