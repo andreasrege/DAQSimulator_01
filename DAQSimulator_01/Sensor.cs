@@ -16,18 +16,13 @@ namespace DAQSimulator_01
         protected string txtPos;
         protected int sensorId;
         protected Random rnd;
-        
-        
-        protected int res;// = Convert.ToInt32(Math.Pow(2, 22));
+        private double lastValue;
+        protected int res;
 
 
         public Sensor()
         {
-            /*
-            minValue = _min;
-            maxValue = _max;
-            res = _res;*/
-            //scaledSensVal = new Scale(0, res, minValue, maxValue);
+
         }
 
         public Sensor(int _sensorId, string _type, string _measurand, string _txtPos, int _res)
@@ -37,23 +32,12 @@ namespace DAQSimulator_01
             measurand = _measurand; //Assigns measureand
             txtPos = _txtPos; // Assigns txtPos
             sensorId = _sensorId; //Assigngs sensorId
-            //minValue = _min; //V
-            //maxValue = _max; //V
-            res = _res; //resolution
             rnd = new Random(sensorId); //Instanciate a new random
-
-            //minValue = _min;
-            //maxValue = _max;
-            //res = _res;
-            //scaledSensVal = new Scale(0, res, minValue, maxValue);
         }
 
         public virtual double GetValue()
         {
-            //minVolt = _minVolt;
-            //maxVolt = _maxVolt;
             sValue = SimSensor(res);
-            //sValue = scaledSensVal.ScaleValue(sValue);
             return sValue;
         }
 
@@ -62,6 +46,12 @@ namespace DAQSimulator_01
             
             return rnd.Next(_resolution);
         }
-        
+
+        public double LastValue
+        {
+            get { return lastValue; }
+            protected set { lastValue = value; }
+        }
+
     }
 }

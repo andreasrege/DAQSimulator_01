@@ -20,6 +20,7 @@ namespace DAQSimulator_01
         {
             minValue = _min;
             maxValue = _max;
+            
             scaledSensVal = new Scale(0, res, minValue, maxValue);
             
         }
@@ -29,7 +30,18 @@ namespace DAQSimulator_01
             double tmp;
             tmp = base.GetValue();
             tmp = scaledSensVal.ScaleValue(tmp);
+            LastValue = tmp;
             return tmp;
+        }
+
+        public string DisplayLine()
+        {
+            string strDispLine = "Sensor ";
+            strDispLine += name;
+            strDispLine += " value: ";
+            strDispLine += LastValue.ToString("F3");
+            strDispLine += " ["+measurand+ "]";
+            return strDispLine;
         }
     }
 }

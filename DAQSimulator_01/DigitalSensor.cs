@@ -17,5 +17,22 @@ namespace DAQSimulator_01
         {
 
         }
+
+        public override double GetValue()
+        {
+            LastValue = base.GetValue();
+            return LastValue;
+        }
+
+        
+
+        public string DisplayLine()
+        {
+            string strDispLine = "Sensor ";
+            strDispLine += name;
+            strDispLine += " value: ";
+            strDispLine += LastValue.ToString();
+            return strDispLine;
+        }
     }
 }
