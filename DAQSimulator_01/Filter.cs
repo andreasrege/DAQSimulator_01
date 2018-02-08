@@ -6,17 +6,53 @@ using System.Threading.Tasks;
 
 namespace DAQSimulator_01
 {
+    /// <summary>
+    /// ///////////////////////////////////////////////////////////////////////////////
+    /// 
+    /// Created by: Andreas Rege
+    /// V1.0
+    /// Date: 2018-02-08
+    /// 
+    /// Purpose: Class for filter objects
+    /// 
+    /// /////////////////////////////////////////////////////////////////////////////// 
+    /// </summary>
     class Filter
     {
+        /// <summary>
+        /// Object variables
+        /// </summary>
         private List<double> MA_FilterList; //= new List<double>(5);
         private int fSize;
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Constructor with args to define filter size
+        /// 
+        /// /////////////////////////////////////////////////////////////////////////////// 
+        /// </summary>
         public Filter(int fSizeIn)
         {
             fSize = fSizeIn;
             MA_FilterList = new List<double>(fSize);
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Function/Method that adds new values to a list
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         public void AddValue(double newValue)
         {
             if (MA_FilterList.Count == fSize)
@@ -24,11 +60,33 @@ namespace DAQSimulator_01
             MA_FilterList.Add(newValue);
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Property that returns the average of the values in filter object
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         public double FilteredValue
         {
             get { return MA_FilterList.Average(); }
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Function/Method to combine info to a text string 
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         public string DisplayLine(int id)
         {
             string strDispLine = "Sensor ";
@@ -40,7 +98,18 @@ namespace DAQSimulator_01
         }
     }
 
-    class Filter3
+    /// <summary>
+    /// ///////////////////////////////////////////////////////////////////////////////
+    /// 
+    /// Created by: Andreas Rege
+    /// V1.0
+    /// Date: 2018-02-08
+    /// 
+    /// Purpose: Old class for filter objects.
+    ///            (TO BE DELETED)
+    /// ///////////////////////////////////////////////////////////////////////////////
+    /// /*
+   /* class Filter3
     {
         //List<double> MA_FilterList = new List<double>(5);
         double values;
@@ -54,14 +123,6 @@ namespace DAQSimulator_01
 
         bool enableFiltering=false;
 
-
-       /* public double[] AddToMAFList(double _values)
-        {
-            values = _values;
-            FilterValues(values);
-            return 
-        }*/
-
         public double[] FilterValues(double _RawValues)
         {
             sampledValues[index1, index2] = _RawValues;
@@ -71,7 +132,7 @@ namespace DAQSimulator_01
             {
                 totalVal += sampledValues[m];
             }
-            filteredValue = totalVal/sampledValues.Length;*/
+            filteredValue = totalVal/sampledValues.Length;
             index2++;
             if (index2>=7)
             {
@@ -89,7 +150,7 @@ namespace DAQSimulator_01
                 foreach (int element in filteredValue)
                 {
                     filteredValue[element] = 0;
-                }*/
+                }
                 int h = 0;
                 Array.Clear(totalVal,h ,7);
                 //Array.Clear(totalVal, index2, 5);
@@ -104,5 +165,5 @@ namespace DAQSimulator_01
             }
             return filteredValue;
         }
-    }
+    }*/
 }

@@ -21,6 +21,9 @@ namespace DAQSimulator_01
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// Main's variables
+        /// </summary>
         AnalogSensor[] arrAnalogSensor;
         DigitalSensor[] arrDigSensor;
         Log logFile;
@@ -41,10 +44,21 @@ namespace DAQSimulator_01
         int aMinRange=-1;
         int aMaxRange=1;
         int aRes = Convert.ToInt32(Math.Pow(2,22));
-        //int dRes = Convert.ToInt32(Math.Pow(2,1));
-
+       
         string path = @"C:\Users\andreas\Documents\_Skole\Visual Studio code\LogFiles\log333.csv";
         bool fileExist;
+
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Main routine/program
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         public MainWindow()
         {
 
@@ -83,7 +97,17 @@ namespace DAQSimulator_01
         }
 
 
-
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Button_Click event for logging of data to display and file 
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void btnLogToFile_Click(object sender, RoutedEventArgs e)
         {
             lstViewLogVals.Items.Clear();
@@ -102,7 +126,7 @@ namespace DAQSimulator_01
                     logFile.appendToFile(filter[j].FilteredValue.ToString());
                 }
                 
-                //Getting and storing digital sensor values
+                //Storing digital sensor values to file and displays the valus
                 for (int k=0; k < dSensorCount; k++)
                 {
                     lstViewDigLogVals.Items.Add(arrDigSensor[k].DisplayLine());
@@ -117,8 +141,19 @@ namespace DAQSimulator_01
             }
         }
 
-        
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Button_Click event for reading sensor values, filter it and write 
+        ///             it to display  
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void btnReadSensVal_Click(object sender, RoutedEventArgs e)
         {
             lstView1.Items.Clear();
@@ -155,19 +190,54 @@ namespace DAQSimulator_01
             //txtTestTextBox.Text = scaleSensor2.ScaleValue(arrListValues[2]).ToString();
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Menu_Click event to exit program
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void mnuFileExit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Menu_Click event to display information about application
+        ///             sampling time
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void mnuHelpSampling_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("The system is available for sampling every " + sampleTime/1000 + " seconds","About Sampling");
         }
 
+        /// <summary>
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// 
+        /// Created by: Andreas Rege
+        /// V1.0
+        /// Date: 2018-02-08
+        /// 
+        /// Purpose: Menu_Click event to display information about application 
+        ///             logging interval
+        /// 
+        /// ///////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         private void mnuHelpLogging_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("The system is available for sampling every " + logTime + " seconds \nLog file path: \n"+path, "About Logging");
+            MessageBox.Show("The system is available for logging every " + logTime + " seconds \nLog file path: \n"+path, "About Logging");
         }
     }
 }
